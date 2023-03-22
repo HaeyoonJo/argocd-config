@@ -5,8 +5,10 @@ metadata:
   namespace: argocd
 spec:
   project: default
-
-  source:
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: myapp
+  sources:
     # ArgoCD polls git repo every 3 minutes
     # repoURL: https://gitlab.com/nanuchi/argocd-app-config.git
     - repoURL: https://github.com/HaeyoonJo/argocd-config.git
@@ -15,9 +17,6 @@ spec:
     - repoURL: https://github.com/HaeyoonJo/argocd-config.git
       targetRevison: HEAD
       path: nginx
-  destination: 
-    server: https://kubernetes.default.svc
-    namespace: myapp
 
   syncPolicy:
     syncOptions:
