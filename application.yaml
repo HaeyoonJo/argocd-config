@@ -12,6 +12,9 @@ spec:
     - repoURL: https://github.com/HaeyoonJo/argocd-config.git
       targetRevision: HEAD
       path: dev
+    - repoURL: https://github.com/HaeyoonJo/argocd-config.git
+      targetRevison: HEAD
+      path: nginx
   destination: 
     server: https://kubernetes.default.svc
     namespace: myapp
