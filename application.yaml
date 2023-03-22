@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-argo-application
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    # ArgoCD polls git repo every 3 minutes
+    # repoURL: https://gitlab.com/nanuchi/argocd-app-config.git
+    repoURL: https://github.com/HaeyoonJo/argocd-config.git
+    targetRevision: HEAD
+    path: dev
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: myapp
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      # by default, automatic sync won't delete resources, so we set here to be "true"
+      # which ArgoCD will delete resources when it's needed
+      prune: true
